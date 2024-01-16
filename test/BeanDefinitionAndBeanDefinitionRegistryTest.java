@@ -1,3 +1,4 @@
+import bean.UserService;
 import beans.factory.config.BeanDefinition;
 import beans.factory.support.DefaultListableBeanFactory;
 import org.testng.Assert;
@@ -10,7 +11,9 @@ public class BeanDefinitionAndBeanDefinitionRegistryTest {
         BeanDefinition userServiceDef = new BeanDefinition(UserService.class);
         factory.registerBeanDefinition("userService", userServiceDef);
 
-        UserService userService = (UserService) factory.getBean("userService");
-        Assert.assertEquals(userService.sayHello(), "Hello!", "Failed to get bean from factory");
+
+        // With-args Constructor
+        UserService userServiceWithArgs = (UserService) factory.getBean("userService", "Leo");
+        Assert.assertEquals(userServiceWithArgs.queryUserInfo(), "Username: Leo", "Failed to get bean with args");
     }
 }

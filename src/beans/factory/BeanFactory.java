@@ -1,5 +1,7 @@
 package beans.factory;
 
+import beans.BeansException;
+
 /**
  * Bean Container
  */
@@ -10,5 +12,5 @@ public interface BeanFactory {
      * @param beanName
      * @return
      */
-    Object getBean(String beanName);
+    Object getBean(String beanName, Object... args) throws BeansException;
 }
